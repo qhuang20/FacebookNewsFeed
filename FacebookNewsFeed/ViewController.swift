@@ -8,18 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FeedController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        navigationItem.title = "Facebook Feed"
+        
+        collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
