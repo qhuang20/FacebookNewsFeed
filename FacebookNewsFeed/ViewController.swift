@@ -37,7 +37,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.bounds.width, height: 300)
+        return CGSize(width: view.bounds.width, height: 400)
     }
     
 }
@@ -59,7 +59,8 @@ class FeedCell: UICollectionViewCell {
         label.numberOfLines = 2
         
         let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "\nDecember 18 • San Francisco • ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+        let secondLineText = NSAttributedString(string: "\nDecember 18 • San Francisco • ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 155, green: 161, blue: 171)])
+        attributedText.append(secondLineText)
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
@@ -96,6 +97,32 @@ class FeedCell: UICollectionViewCell {
         return imageView
     }()
     
+    let likeCommentsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "488 Likes   10.7k Comments"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.rgb(red: 155, green: 161, blue: 171)
+        return label
+    }()
+    
+    let dividerLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.rgb(red: 226, green: 228, blue: 232)
+        return view
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Like", for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 143, green: 150, blue: 163), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
+        button.setImage(UIImage(named: "like"), for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        
+        return button
+    }()
+    
     private func setupViews() {
         backgroundColor = .white
         
@@ -103,12 +130,19 @@ class FeedCell: UICollectionViewCell {
         addSubview(profileImageView)
         addSubview(statusTextView)
         addSubview(statusImageView)
+        addSubview(likeCommentsLabel)
+        addSubview(dividerLineView)
+        addSubview(likeButton)
         
         addConstraintsWithFormat(format: "H:|-[v0(44)]-[v1]-|", views: profileImageView, nameLabel)
         addConstraintsWithFormat(format: "H:|[v0]|", views: statusImageView)
         addConstraintsWithFormat(format: "H:|-4-[v0]-|", views: statusTextView)
-        addConstraintsWithFormat(format: "V:|-[v0]", views: nameLabel)
-        addConstraintsWithFormat(format: "V:|-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
+        addConstraintsWithFormat(format: "H:|-12-[v0]-|", views: likeCommentsLabel)
+        addConstraintsWithFormat(format: "H:|-12-[v0]-12-|", views: dividerLineView)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: likeButton)
+        
+        addConstraintsWithFormat(format: "V:|-[v0(48)]", views: nameLabel)
+        addConstraintsWithFormat(format: "V:|-[v0(44)]-4-[v1(30)]-4-[v2]-[v3(24)]-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likeCommentsLabel, dividerLineView, likeButton)
     }
     
 }
