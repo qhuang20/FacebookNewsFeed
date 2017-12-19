@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     
-    func addConstraintsWithFormat(format: String, views: UIView...) {
+    func addConstraintsWith(format: String, views: UIView...) {
         
         var viewsDictionary = [String: UIView]()
         

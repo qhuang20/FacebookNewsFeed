@@ -18,15 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let layout = UICollectionViewFlowLayout()//layout.minimumLineSpacing
-        let feedController = FeedController(collectionViewLayout: layout)
-        let navigationController = UINavigationController(rootViewController: feedController)
-        window?.rootViewController = navigationController
+//        let layout = UICollectionViewFlowLayout()//layout.minimumLineSpacing
+//        let feedController = FeedController(collectionViewLayout: layout)
+//        window?.rootViewController = UINavigationController(rootViewController: feedController)
+        
+        window?.rootViewController = CustomTabBarController()
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 51/255, green: 90/255, blue: 149/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        application.statusBarStyle = .lightContent
+        UITabBar.appearance().tintColor = UIColor.rgb(red: 70, green: 146, blue: 250)
+        
+        application.statusBarStyle = .lightContent//configure info
         
         // Override point for customization after application launch.
         return true

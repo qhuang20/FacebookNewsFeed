@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		7BEBAFC61FE35C34002EAEB1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC51FE35C34002EAEB1 /* Extension.swift */; };
+		7BEBAFC81FE88338002EAEB1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */; };
+		7BEBAFCA1FE886F7002EAEB1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */; };
+		7BEBAFCC1FE88ECC002EAEB1 /* OtherControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFCB1FE88ECC002EAEB1 /* OtherControllers.swift */; };
 		7BF4F1871FE3207F0008E439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF4F1861FE3207F0008E439 /* AppDelegate.swift */; };
-		7BF4F1891FE3207F0008E439 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF4F1881FE3207F0008E439 /* ViewController.swift */; };
+		7BF4F1891FE3207F0008E439 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF4F1881FE3207F0008E439 /* FeedController.swift */; };
 		7BF4F18E1FE3207F0008E439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BF4F18D1FE3207F0008E439 /* Assets.xcassets */; };
 		7BF4F1911FE3207F0008E439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BF4F18F1FE3207F0008E439 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7BEBAFC51FE35C34002EAEB1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		7BEBAFCB1FE88ECC002EAEB1 /* OtherControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherControllers.swift; sourceTree = "<group>"; };
 		7BF4F1831FE3207F0008E439 /* FacebookNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BF4F1861FE3207F0008E439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BF4F1881FE3207F0008E439 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7BF4F1881FE3207F0008E439 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		7BF4F18D1FE3207F0008E439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BF4F1901FE3207F0008E439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BF4F1921FE3207F0008E439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,7 +60,10 @@
 		7BF4F1851FE3207F0008E439 /* FacebookNewsFeed */ = {
 			isa = PBXGroup;
 			children = (
-				7BF4F1881FE3207F0008E439 /* ViewController.swift */,
+				7BEBAFCB1FE88ECC002EAEB1 /* OtherControllers.swift */,
+				7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */,
+				7BF4F1881FE3207F0008E439 /* FeedController.swift */,
+				7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */,
 				7BF4F1861FE3207F0008E439 /* AppDelegate.swift */,
 				7BEBAFC51FE35C34002EAEB1 /* Extension.swift */,
 				7BF4F18D1FE3207F0008E439 /* Assets.xcassets */,
@@ -136,7 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BEBAFC61FE35C34002EAEB1 /* Extension.swift in Sources */,
-				7BF4F1891FE3207F0008E439 /* ViewController.swift in Sources */,
+				7BEBAFC81FE88338002EAEB1 /* FeedCell.swift in Sources */,
+				7BEBAFCC1FE88ECC002EAEB1 /* OtherControllers.swift in Sources */,
+				7BEBAFCA1FE886F7002EAEB1 /* CustomTabBarController.swift in Sources */,
+				7BF4F1891FE3207F0008E439 /* FeedController.swift in Sources */,
 				7BF4F1871FE3207F0008E439 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
