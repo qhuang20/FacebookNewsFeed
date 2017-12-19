@@ -83,14 +83,48 @@ class FeedCell: UICollectionViewCell {
         return textView
     }()
     
-    let statusImageView: UIImageView = {
+    lazy var statusImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "zuckdog"))
         
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
+        imageView.layer.masksToBounds = true//imageView.clipsToBounds = true
         
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animate)))
+     
         return imageView
     }()
+    
+    @objc func animate() {
+        guard let startingFrame = statusImageView.superview?.convert(statusImageView.frame, to: nil) else { return }//receiver’s coordinate system.convert
+        
+        guard let baseView = superview?.superview else { return }
+        
+        statusImageView.alpha = 0//hide it
+        
+        let blackView = UIView()
+        blackView.frame = baseView.frame
+        blackView.backgroundColor = .black
+        blackView.alpha = 0
+        baseView.addSubview(blackView)
+        
+        let zoomImageView = UIImageView()
+        zoomImageView.frame = startingFrame
+        zoomImageView.image = statusImageView.image
+        zoomImageView.contentMode = .scaleAspectFill
+        zoomImageView.isUserInteractionEnabled = true
+        baseView.addSubview(zoomImageView)
+        
+        UIView.animate(withDuration: 0.75) {
+            let height = (baseView.frame.width / startingFrame.width) * startingFrame.height
+
+            let y = baseView.frame.height / 2 - height / 2
+
+            zoomImageView.frame = CGRect(x: 0, y: y, width: baseView.frame.width, height: height)
+            
+            blackView.alpha = 1
+        }
+    }
     
     let likeCommentsLabel: UILabel = {
         let label = UILabel()
