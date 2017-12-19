@@ -18,7 +18,7 @@ class Post {
 }
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     var posts = [Post]()
     
     let cellId = "cellId"

@@ -80,6 +80,7 @@ class FeedCell: UICollectionViewCell {
         textView.text = "Meanwhile, Beast turned to the dark side"
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.isScrollEnabled = false
+        textView.isEditable = false
         return textView
     }()
     
@@ -95,34 +96,51 @@ class FeedCell: UICollectionViewCell {
         return imageView
     }()
     
+    let blackView = UIView()
+    let zoomImageView = UIImageView()
+    //https://www.youtube.com/watch?v=kzdI2aiTX4k&list=PL0dzCUj1L5JHDWIO3x4wePhD8G4d1Fa6N&index=6
     @objc func animate() {
         guard let startingFrame = statusImageView.superview?.convert(statusImageView.frame, to: nil) else { return }//receiver’s coordinate system.convert
         
-        guard let baseView = superview?.superview else { return }
+        guard let windowView = UIApplication.shared.keyWindow else { return }//see url
         
         statusImageView.alpha = 0//hide it
         
-        let blackView = UIView()
-        blackView.frame = baseView.frame
+        blackView.frame = windowView.frame
         blackView.backgroundColor = .black
         blackView.alpha = 0
-        baseView.addSubview(blackView)
-        
-        let zoomImageView = UIImageView()
+        windowView.addSubview(blackView)
+
         zoomImageView.frame = startingFrame
-        zoomImageView.image = statusImageView.image
         zoomImageView.contentMode = .scaleAspectFill
         zoomImageView.isUserInteractionEnabled = true
-        baseView.addSubview(zoomImageView)
+        windowView.addSubview(zoomImageView)
         
-        UIView.animate(withDuration: 0.75) {
-            let height = (baseView.frame.width / startingFrame.width) * startingFrame.height
-
-            let y = baseView.frame.height / 2 - height / 2
-
-            zoomImageView.frame = CGRect(x: 0, y: y, width: baseView.frame.width, height: height)
+        zoomImageView.image = statusImageView.image
+        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
+ 
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            let height = (windowView.frame.width / startingFrame.width) * startingFrame.height
             
-            blackView.alpha = 1
+            let y = windowView.frame.height / 2 - height / 2
+            
+            self.zoomImageView.frame = CGRect(x: 0, y: y, width: windowView.frame.width, height: height)
+            
+            self.blackView.alpha = 1
+        }, completion: nil)
+    }
+    
+    @objc func zoomOut() {
+        let startingFrame = statusImageView.superview!.convert(statusImageView.frame, to: nil)
+        
+        UIView.animate(withDuration: 0.75, animations: {
+            self.zoomImageView.frame = startingFrame
+            self.blackView.alpha = 0
+            
+        }) { (didComplete) in
+            self.zoomImageView.removeFromSuperview()
+            self.blackView.removeFromSuperview()
+            self.statusImageView.alpha = 1
         }
     }
     
