@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B501C411FEA07C000995AD2 /* all_posts.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B501C401FEA07C000995AD2 /* all_posts.json */; };
+		7B501C431FEA082100995AD2 /* single_post.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B501C421FEA082100995AD2 /* single_post.json */; };
+		7B501C451FEA10CF00995AD2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B501C441FEA10CF00995AD2 /* Model.swift */; };
 		7BEBAFC61FE35C34002EAEB1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC51FE35C34002EAEB1 /* Extension.swift */; };
 		7BEBAFC81FE88338002EAEB1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */; };
 		7BEBAFCA1FE886F7002EAEB1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B501C401FEA07C000995AD2 /* all_posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_posts.json; sourceTree = "<group>"; };
+		7B501C421FEA082100995AD2 /* single_post.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = single_post.json; sourceTree = "<group>"; };
+		7B501C441FEA10CF00995AD2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7BEBAFC51FE35C34002EAEB1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -63,12 +69,15 @@
 				7BEBAFCB1FE88ECC002EAEB1 /* OtherControllers.swift */,
 				7BEBAFC71FE88337002EAEB1 /* FeedCell.swift */,
 				7BF4F1881FE3207F0008E439 /* FeedController.swift */,
+				7B501C441FEA10CF00995AD2 /* Model.swift */,
 				7BEBAFC91FE886F7002EAEB1 /* CustomTabBarController.swift */,
 				7BF4F1861FE3207F0008E439 /* AppDelegate.swift */,
 				7BEBAFC51FE35C34002EAEB1 /* Extension.swift */,
+				7B501C401FEA07C000995AD2 /* all_posts.json */,
 				7BF4F18D1FE3207F0008E439 /* Assets.xcassets */,
 				7BF4F18F1FE3207F0008E439 /* LaunchScreen.storyboard */,
 				7BF4F1921FE3207F0008E439 /* Info.plist */,
+				7B501C421FEA082100995AD2 /* single_post.json */,
 			);
 			path = FacebookNewsFeed;
 			sourceTree = "<group>";
@@ -133,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BF4F1911FE3207F0008E439 /* LaunchScreen.storyboard in Resources */,
+				7B501C411FEA07C000995AD2 /* all_posts.json in Resources */,
 				7BF4F18E1FE3207F0008E439 /* Assets.xcassets in Resources */,
+				7B501C431FEA082100995AD2 /* single_post.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B501C451FEA10CF00995AD2 /* Model.swift in Sources */,
 				7BEBAFC61FE35C34002EAEB1 /* Extension.swift in Sources */,
 				7BEBAFC81FE88338002EAEB1 /* FeedCell.swift in Sources */,
 				7BEBAFCC1FE88ECC002EAEB1 /* OtherControllers.swift in Sources */,

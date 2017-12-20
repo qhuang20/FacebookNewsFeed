@@ -16,8 +16,11 @@ class FeedCell: UICollectionViewCell {
             guard let name = post?.name else { return }
             
             let attributedText = NSMutableAttributedString(string: name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-            let secondLineText = NSAttributedString(string: "\nDecember 18 • San Francisco • ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 155, green: 161, blue: 171)])
-            attributedText.append(secondLineText)
+            if let city = post?.location?.city, let state = post?.location?.state {
+                let secondLineText = NSAttributedString(string: "\nDecember 18 • \(city), \(state) • ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 155, green: 161, blue: 171)])
+                
+                attributedText.append(secondLineText)
+            }
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 4
@@ -41,14 +44,10 @@ class FeedCell: UICollectionViewCell {
             if let statusImageName = post?.statusImageName {
                 statusImageView.image = UIImage(named: statusImageName)
             }
-            
-            //            if let numLikes = post?.numLikes {
-            //
-            //            }
-            //
-            //            if let numComments = post?.numComments {
-            //
-            //            }
+
+            if let numLikes = post?.numLikes, let numComments = post?.numComments {
+                likeCommentsLabel.text = "\(numLikes) Likes  \(numComments) Comments"
+            }
             
         }
     }
@@ -96,29 +95,45 @@ class FeedCell: UICollectionViewCell {
         return imageView
     }()
     
+    //https://www.youtube.com/watch?v=kzdI2aiTX4k&list=PL0dzCUj1L5JHDWIO3x4wePhD8G4d1Fa6N&index=6
     let blackView = UIView()
     let zoomImageView = UIImageView()
-    //https://www.youtube.com/watch?v=kzdI2aiTX4k&list=PL0dzCUj1L5JHDWIO3x4wePhD8G4d1Fa6N&index=6
+    let tabBarCover = UIView()
+    let navBarCover = UIView()
+    
     @objc func animate() {
         guard let startingFrame = statusImageView.superview?.convert(statusImageView.frame, to: nil) else { return }//receiver’s coordinate system.convert
         
         guard let windowView = UIApplication.shared.keyWindow else { return }//see url
+        
+        guard let baseView = superview?.superview else { return }//UIViewController's view
         
         statusImageView.alpha = 0//hide it
         
         blackView.frame = windowView.frame
         blackView.backgroundColor = .black
         blackView.alpha = 0
-        windowView.addSubview(blackView)
-
+        baseView.addSubview(blackView)
+        
         zoomImageView.frame = startingFrame
         zoomImageView.contentMode = .scaleAspectFill
+        zoomImageView.clipsToBounds = true
         zoomImageView.isUserInteractionEnabled = true
-        windowView.addSubview(zoomImageView)
+        baseView.addSubview(zoomImageView)
+        
+        tabBarCover.frame = CGRect(x: 0, y: 0, width: 1000, height: 44 + 20)
+        tabBarCover.backgroundColor = .black
+        tabBarCover.alpha = 0
+        windowView.addSubview(tabBarCover)
+        
+        navBarCover.frame = CGRect(x: 0, y: windowView.frame.height - 49, width: 1000, height: 49)
+        navBarCover.backgroundColor = .black
+        navBarCover.alpha = 0
+        windowView.addSubview(navBarCover)
         
         zoomImageView.image = statusImageView.image
         zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
- 
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
             let height = (windowView.frame.width / startingFrame.width) * startingFrame.height
             
@@ -127,6 +142,8 @@ class FeedCell: UICollectionViewCell {
             self.zoomImageView.frame = CGRect(x: 0, y: y, width: windowView.frame.width, height: height)
             
             self.blackView.alpha = 1
+            self.navBarCover.alpha = 1
+            self.tabBarCover.alpha = 1
         }, completion: nil)
     }
     
@@ -136,10 +153,14 @@ class FeedCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.75, animations: {
             self.zoomImageView.frame = startingFrame
             self.blackView.alpha = 0
+            self.navBarCover.alpha = 0
+            self.tabBarCover.alpha = 0
             
         }) { (didComplete) in
             self.zoomImageView.removeFromSuperview()
             self.blackView.removeFromSuperview()
+            self.navBarCover.removeFromSuperview()
+            self.tabBarCover.removeFromSuperview()
             self.statusImageView.alpha = 1
         }
     }
